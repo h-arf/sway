@@ -805,7 +805,11 @@ json_object *ipc_json_describe_node(struct sway_node *node) {
 
 	json_object *object = ipc_json_create_node((int)node->id,
 				ipc_json_node_type_description(node->type), name, focused, focus, &box);
-
+	if (node->type == N_ROOT) {
+	struct sway_seat *seat = input_manager_get_default_seat();
+	json_object_object_add(object, "cursor_x", json_object_new_double(seat->cursor->cursor->x));
+	json_object_object_add(object, "cursor_y", json_object_new_double(seat->cursor->cursor->y));
+}
 	switch (node->type) {
 	case N_ROOT:
 		break;
