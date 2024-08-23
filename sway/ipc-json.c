@@ -867,7 +867,7 @@ json_object *ipc_json_describe_node_recursive(struct sway_node *node) {
 		}
 		break;
 	}
-	json_object_object_add(object, "nodes", children);
+	json_object_object_add(object, "nodes-t", children);
 
 	return object;
 }
